@@ -46,8 +46,8 @@ class Offer(models.Model):
     updated = models.DateTimeField('Дата изменения', auto_now=True)
     date_begin_rotation = models.DateField('дата начала ротации', blank=True)
     date_end_rotation = models.DateField('Дата окончания ротации', blank=True)
-    offer_title = models.CharField('Название предложения', max_length=150)
-    offer_type = models.IntegerField('Тип предложения', choices=OFFER_CHOICES, default=CONSUMER)
+    title = models.CharField('Название предложения', max_length=150)
+    type = models.IntegerField('Тип предложения', choices=OFFER_CHOICES, default=CONSUMER)
     min_scoring = models.IntegerField('Минимальный скоринговый балл', default=0)
     max_scoring = models.IntegerField('Максимальный скоринговый балл', default=0)
     organization = models.ForeignKey(
@@ -55,7 +55,7 @@ class Offer(models.Model):
     )
 
     def __str__(self):
-        return self.offer_title
+        return self.title
 
     class Meta:
         verbose_name = 'Предложение'
@@ -74,7 +74,7 @@ class Checklist(models.Model):
     passport = models.CharField('Номер паспорта', max_length=10)
     scoring = models.IntegerField('Скоринговый балл', default=0)
     partner = models.ForeignKey(
-        Partner, on_delete=models.CASCADE, verbose_name='Партнер',
+        Partner, on_delete=models.CASCADE, verbose_name='Партнёр',
     )
 
     def __str__(self):
