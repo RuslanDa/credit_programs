@@ -4,14 +4,17 @@ from .models import Organization, Offer, Partner, Checklist, Order
 
 class OfferInline(admin.TabularInline):
     model = Offer
+    extra = 3
 
 
 class CheckListInline(admin.TabularInline):
     model = Checklist
+    extra = 3
 
 
 class OrderInline(admin.TabularInline):
     model = Order
+    extra = 3
 
 
 class OrganizationAdmin(admin.ModelAdmin):
@@ -20,9 +23,9 @@ class OrganizationAdmin(admin.ModelAdmin):
     list_display_links = ('title',)
     search_fields = ('title', 'ogrn', 'address')
     list_filter = ('title',)
-    inlines = (
+    inlines = [
         OfferInline,
-    )
+    ]
 
 
 class PartnerAdmin(admin.ModelAdmin):
@@ -31,9 +34,9 @@ class PartnerAdmin(admin.ModelAdmin):
     list_display_links = ('title',)
     search_fields = ('title', 'inn')
     list_filter = ('title',)
-    inlines = (
+    inlines = [
         CheckListInline,
-    )
+    ]
 
 
 class OfferAdmin(admin.ModelAdmin):
@@ -43,9 +46,9 @@ class OfferAdmin(admin.ModelAdmin):
     search_fields = ('title',)
     list_editable = ('date_begin_rotation',  'date_end_rotation')
     list_filter = ('type',)
-    inlines = (
+    inlines = [
         OrderInline,
-    )
+    ]
     
 
 class ChecklistAdmin(admin.ModelAdmin):
@@ -54,9 +57,9 @@ class ChecklistAdmin(admin.ModelAdmin):
     list_display_links = ('first_name', 'partner')
     search_fields = ('last_name', 'title')
     list_filter = ('last_name', 'partner')
-    inlines = (
+    inlines = [
         OrderInline,
-    )
+    ]
 
 
 class OrderAdmin(admin.ModelAdmin):

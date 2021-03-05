@@ -3,6 +3,9 @@ from django.db import models
 
 # Кредитная организация
 class Organization(models.Model):
+    '''
+    Кредитная организация
+    '''
     cbrf_id = models.IntegerField('ID CBRF', default=0)
     title = models.CharField('Название', max_length=150)
     reg_num = models.IntegerField('Регистрационный номер', default=0)
@@ -60,6 +63,7 @@ class Offer(models.Model):
     class Meta:
         verbose_name = 'Предложение'
         verbose_name_plural = 'Предложения'
+        ordering = ['date_begin_rotation']
 
 
 # Анкета
@@ -83,6 +87,7 @@ class Checklist(models.Model):
     class Meta:
         verbose_name = 'Анкета'
         verbose_name_plural = 'Анкеты'
+        ordering = ['scoring']
 
 
 # Заявка
@@ -117,3 +122,4 @@ class Order(models.Model):
     class Meta:
         verbose_name = 'Заявка'
         verbose_name_plural = 'Заявки'
+        ordering = ['sended']
